@@ -53,10 +53,14 @@
                         p: 0.01
                         i: 0.0
                         d: 0.0
+                        i_clamp: 0.2
+                        antiwindup: false
                     flipper_fr_sprocket_axle:
                         p: 0.01
                         i: 0.0
                         d: 0.0
+                        i_clamp: 0.2
+                        antiwindup: false
         </rosparam>
 
         <!-- load and start the controllers -->
