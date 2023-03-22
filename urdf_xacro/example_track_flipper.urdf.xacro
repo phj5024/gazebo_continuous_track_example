@@ -43,7 +43,7 @@
 
     <!-- sprocket driving the track -->
     <link name="sprocket_left">
-        <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
+        <xacro:make_wheel_inertia mass="2.0" radius="0.064" length="0.1115" />
 
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
@@ -81,13 +81,14 @@
             <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         </joint>
         <actuator name="sprocket_left_actuator">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
     </transmission>
 
     <!-- idler on the other side of the sprocket -->
     <link name="idler_left">
-        <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
+        <xacro:make_wheel_inertia mass="2.0" radius="0.064" length="0.1115" />
 
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
@@ -111,7 +112,7 @@
 
     <!-- sprocket driving the track -->
     <link name="sprocket_right">
-        <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
+        <xacro:make_wheel_inertia mass="2.0" radius="0.064" length="0.1115" />
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
@@ -147,13 +148,14 @@
             <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         </joint>
         <actuator name="sprocket_right_actuator">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
     </transmission>
 
     <!-- idler on the other side of the sprocket -->
     <link name="idler_right">
-        <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
+        <xacro:make_wheel_inertia mass="2.0" radius="0.064" length="0.1115" />
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
@@ -192,7 +194,7 @@
         </actuator>
     </transmission>
     <link name="flipper_fl_sprocket">
-        <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
+        <xacro:make_wheel_inertia mass="2.0" radius="0.064" length="0.1115" />
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
@@ -219,11 +221,12 @@
             <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         </joint>
         <actuator name="flipper_fl_sprocket_axle_actuator">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
     </transmission>
     <link name="flipper_fl_idler">
-        <xacro:make_wheel_inertia mass="0.2" radius="0.0225" length="0.1115" />
+        <xacro:make_wheel_inertia mass="2.0" radius="0.0225" length="0.1115" />
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
@@ -262,7 +265,7 @@
         </actuator>
     </transmission>
     <link name="flipper_fr_sprocket">
-        <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
+        <xacro:make_wheel_inertia mass="2.0" radius="0.064" length="0.1115" />
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
@@ -289,11 +292,12 @@
             <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         </joint>
         <actuator name="flipper_fr_sprocket_axle_actuator">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
     </transmission>
     <link name="flipper_fr_idler">
-        <xacro:make_wheel_inertia mass="0.2" radius="0.0225" length="0.1115" />
+        <xacro:make_wheel_inertia mass="2.0" radius="0.0225" length="0.1115" />
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>

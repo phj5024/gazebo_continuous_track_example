@@ -29,11 +29,9 @@
             sprocket_left_velocity_controller:
                 type: velocity_controllers/JointVelocityController
                 joint: sprocket_left_axle
-                pid: {p: 100.0, i: 0.01, d: 10.0}
             sprocket_right_velocity_controller:
                 type: velocity_controllers/JointVelocityController
                 joint: sprocket_right_axle
-                pid: {p: 100.0, i: 0.01, d: 10.0}
             flipper_fl_position_controller:
                 type: effort_controllers/JointPositionController
                 joint: flipper_fl_joint
@@ -45,11 +43,20 @@
             flipper_fl_velocity_controller:
                 type: velocity_controllers/JointVelocityController
                 joint: flipper_fl_sprocket_axle
-                pid: {p: 100.0, i: 0.01, d: 10.0}
             flipper_fr_velocity_controller:
                 type: velocity_controllers/JointVelocityController
                 joint: flipper_fr_sprocket_axle
-                pid: {p: 100.0, i: 0.01, d: 10.0}
+            
+            gazebo_ros_control:
+                pid_gains:
+                    flipper_fl_sprocket_axle:
+                        p: 0.01
+                        i: 0.0
+                        d: 0.0
+                    flipper_fr_sprocket_axle:
+                        p: 0.01
+                        i: 0.0
+                        d: 0.0
         </rosparam>
 
         <!-- load and start the controllers -->
