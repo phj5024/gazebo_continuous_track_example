@@ -227,6 +227,7 @@ endfunction()
 
 generate_gazebo_model(example_lugged_wheel)
 generate_gazebo_model(example_track)
+generate_gazebo_model(example_track_flipper)
 generate_gazebo_model(example_track_simple)
 generate_gazebo_model(example_track_simple_wheels)
 

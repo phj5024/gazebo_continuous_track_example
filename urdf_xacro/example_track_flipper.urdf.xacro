@@ -26,7 +26,7 @@
     <!-- base_link to be wrapped by the track -->
 
     <link name="base_link">
-        <xacro:make_box_inertia mass="1" size_x="0.5" size_y="0.325" size_z="0.1" />
+        <xacro:make_box_inertia mass="10" size_x="0.5" size_y="0.325" size_z="0.1" />
 
         <visual>
             <geometry>
@@ -42,7 +42,6 @@
     </link>
 
     <!-- sprocket driving the track -->
-
     <link name="sprocket_left">
         <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
 
@@ -70,14 +69,12 @@
             </geometry>
         </collision>
     </link>
-
     <joint name="sprocket_left_axle" type="continuous">
         <origin xyz="0.2 0.095 0" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="sprocket_left" />
         <axis xyz="0 1 0" />
     </joint>
-
     <transmission name="sprocket_left_transmission">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="sprocket_left_axle">
@@ -89,7 +86,6 @@
     </transmission>
 
     <!-- idler on the other side of the sprocket -->
-
     <link name="idler_left">
         <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
 
@@ -107,7 +103,6 @@
             </geometry>
         </collision>
     </link>
-
     <joint name="idler_left_axle" type="fixed">
         <origin xyz="-0.2 0.095 0" rpy="0 0 0" />
         <parent link="base_link" />
@@ -115,10 +110,8 @@
     </joint>
 
     <!-- sprocket driving the track -->
-
     <link name="sprocket_right">
         <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
-
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
@@ -135,7 +128,6 @@
                 <box size="0.1 0.1115 0.01" />
             </geometry>
         </visual>
-
         <collision>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
@@ -143,14 +135,12 @@
             </geometry>
         </collision>
     </link>
-
     <joint name="sprocket_right_axle" type="continuous">
         <origin xyz="0.2 -0.095 0" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="sprocket_right" />
         <axis xyz="0 1 0" />
     </joint>
-
     <transmission name="sprocket_right_transmission">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="sprocket_right_axle">
@@ -162,17 +152,14 @@
     </transmission>
 
     <!-- idler on the other side of the sprocket -->
-
     <link name="idler_right">
         <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
-
         <visual>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
                 <cylinder radius="0.064" length="0.1115" />
             </geometry>
         </visual>
-
         <collision>
             <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
             <geometry>
@@ -180,11 +167,150 @@
             </geometry>
         </collision>
     </link>
-
     <joint name="idler_right_axle" type="fixed">
         <origin xyz="-0.2 -0.095 0" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="idler_right" />
+    </joint>
+
+    <!-- flipper fl -->
+    <link name="flipper_fl_link">
+    </link>
+    <joint name="flipper_fl_joint" type="continuous">
+        <origin xyz="0.2 0.295 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="flipper_fl_link" />
+        <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+    <transmission name="flipper_fl_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="flipper_fl_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="flipper_fl_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <link name="flipper_fl_sprocket">
+        <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.064" length="0.1115" />
+            </geometry>
+        </visual>
+
+        <!-- <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.064" length="0.1115" />
+            </geometry>
+        </collision> -->
+    </link>
+    <joint name="flipper_fl_sprocket_axle" type="continuous">
+        <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+        <parent link="flipper_fl_link" />
+        <child link="flipper_fl_sprocket" />
+        <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+    <transmission name="flipper_fl_sprocket_axle_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="flipper_fl_sprocket_axle">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="flipper_fl_sprocket_axle_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <link name="flipper_fl_idler">
+        <xacro:make_wheel_inertia mass="0.2" radius="0.0225" length="0.1115" />
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.0225" length="0.1115" />
+            </geometry>
+        </visual>
+        <!-- <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.0225" length="0.1115" />
+            </geometry>
+        </collision> -->
+    </link>
+    <joint name="flipper_fl_idler_axle" type="fixed">
+        <origin xyz="0.26 0.0 0" rpy="0 0 0" />
+        <parent link="flipper_fl_link" />
+        <child link="flipper_fl_idler" />
+    </joint>
+
+    <!-- flipper fr -->
+    <link name="flipper_fr_link">
+    </link>
+    <joint name="flipper_fr_joint" type="continuous">
+        <origin xyz="0.2 -0.295 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="flipper_fr_link" />
+        <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+    <transmission name="flipper_fr_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="flipper_fr_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="flipper_fr_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <link name="flipper_fr_sprocket">
+        <xacro:make_wheel_inertia mass="0.2" radius="0.064" length="0.1115" />
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.064" length="0.1115" />
+            </geometry>
+        </visual>
+
+        <!-- <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.064" length="0.1115" />
+            </geometry>
+        </collision> -->
+    </link>
+    <joint name="flipper_fr_sprocket_axle" type="continuous">
+        <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+        <parent link="flipper_fr_link" />
+        <child link="flipper_fr_sprocket" />
+        <axis xyz="0.0 1.0 0.0"/>
+    </joint>
+    <transmission name="flipper_fr_sprocket_axle_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="flipper_fr_sprocket_axle">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="flipper_fr_sprocket_axle_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <link name="flipper_fr_idler">
+        <xacro:make_wheel_inertia mass="0.2" radius="0.0225" length="0.1115" />
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.0225" length="0.1115" />
+            </geometry>
+        </visual>
+        <!-- <collision>
+            <origin xyz="0 0 0" rpy="${pi / 2} 0 0" />
+            <geometry>
+                <cylinder radius="0.0225" length="0.1115" />
+            </geometry>
+        </collision> -->
+    </link>
+    <joint name="flipper_fr_idler_axle" type="fixed">
+        <origin xyz="0.26 0.0 0" rpy="0 0 0" />
+        <parent link="flipper_fr_link" />
+        <child link="flipper_fr_idler" />
     </joint>
 
 </robot>

@@ -38,13 +38,13 @@
             joint_state_controller:
                 type: joint_state_controller/JointStateController
                 publish_rate: 10
-            sprocket_velocity_controller:
+            sprocket_left_velocity_controller:
                 type: velocity_controllers/JointVelocityController
-                joint: sprocket_axle
+                joint: sprocket_left_axle
         </rosparam>
 
         <!-- load and start the controllers -->
-        <node name="controller_starter" pkg="controller_manager" type="controller_manager" args="spawn joint_state_controller sprocket_velocity_controller" output="screen" />
+        <node name="controller_starter" pkg="controller_manager" type="controller_manager" args="spawn joint_state_controller sprocket_left_velocity_controller sprocket_right_velocity_controller" output="screen" />
 
         <!-- convert joint states to TF transforms for rviz, etc -->
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
